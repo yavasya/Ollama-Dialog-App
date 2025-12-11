@@ -4,6 +4,8 @@ A simple web interface built with Flask and Python for comparing the output of t
 
 This project allows you to quickly switch between models, configure unique system prompts for each, and initiate an automated turn-based conversation between the two AI models.
 
+![Screenshot of the application interface](images/screenshot.png)
+
 ## Features
 
 *   **Model Comparison:** Run inputs through two distinct models sequentially.
@@ -31,7 +33,7 @@ Before running this application, you must have:
 2.  **Install Python dependencies:**
 
     ```bash
-    pip install flask ollama markdown
+    pip install flask ollama
     ```
 
 3.  **Run the Flask application:**
