@@ -26,7 +26,7 @@ Before running this application, you must have:
 1.  **Clone the repository** (once it's on GitHub):
 
     ```bash
-    git clone github.com
+    git clone https://github.com/yavasya/Ollama-Dialog-App.git
     cd Ollama-Dialog-App
     ```
 
