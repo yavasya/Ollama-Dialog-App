@@ -1,17 +1,30 @@
-# Ollama Flask Chat Comparator (Ollama-Dialog-App)
+# Ollama AI Interactor (Ollama-Dialog-App)
 
-A simple web interface built with Flask and Python for comparing the output of two different Ollama language models in a side-by-side or automated dialog format.
+A Flask web application designed to orchestrate and manage a **dialog between two different Ollama language models**. This is not a comparison tool, but rather a sandbox for observing AI interaction and collaboration.
 
-This project allows you to quickly switch between models, configure unique system prompts for each, and initiate an automated turn-based conversation between the two AI models.
+The user initiates the conversation topic, after which the models exchange turns automatically or manually, dynamically swapping "user" and "assistant" roles with each turn to create a continuous conversation.
+
+## Key Features
+
+*   **Automated AI Dialog:** Observe how two models converse with each other on a topic you define.
+*   **Dynamic Role Swapping:** Each model in turn receives the dialog history and treats the previous model's response as a "user prompt", fostering a continuous chat.
+*   **"On-the-fly" Management:** The ability to change system prompts (instructions) and even the models themselves *during* an ongoing conversation.
+*   **Debug Logging:** A detailed log window in the sidebar shows the exact messages and prompts being sent to the Ollama server.
+
+## Use Cases
+
+*   **Collaborative Creation:** Observe AI models working together to write code, stories, or solve problems.
+*   **Prompt Testing:** Quickly test how different system instructions affect the flow of conversation.
+*   **Model Behavior Research:** Study how models interact with each other without human intervention.
+
 
 ![Screenshot of the application interface](images/screenshot.png)
 
-## Features
+---
 
-*   **Model Comparison:** Run inputs through two distinct models sequentially.
-*   **Flexible Real-time Configuration:** The Ollama server address, as well as **models and system prompts, can be changed "on the fly" during the current conversation** via the web interface, without restarting the application.
-*   **Automated Dialog:** Initiate an automated turn-based conversation ("dialog") between the two selected models for stress-testing or amusement.
-*   **Debug Logging:** A real-time log window in the sidebar shows the exact messages and prompts being sent to the Ollama server.
+[Читать на русском](README_RU.md)
+
+---
 
 ## Prerequisites
 
