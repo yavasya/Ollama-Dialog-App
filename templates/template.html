@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ollama Flask Chat Comparator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Ollama Flask Chat Comparator</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>
+      {% endif %}
+    {% endwith %}
+
+    {% if not session.ollama_host %}
+    <div id="setup-form">
+        <p>Please enter the full Ollama server address (e.g., http://192.168.1.100:11434):</p>
+        <form method="POST" action="/set_host">
+            <input type="text" name="host_url" placeholder="http://ip_address:port" value="{{ default_host if default_host else '' }}" required>
+            <input type="submit" value="Save Address">
+        </form>
+    </div>
+    {% else %}
+    <!-- Main container for 2-column layout -->
+    <div class="main-container">
+            
+        <!-- Left Column (Main Content) -->
+        <div class="main-content">
+            <div class="model-controls">
+                <div class="model-group">
+                    <label for="modelSelect" id="labelModel1">Model 1:</label>
+                    <select id="modelSelect" onchange="setModel(this.value, 'model_1')">
+                        {% for model in session.available_models %}
+                            <option value="{{ model }}" {% if session.model_1 == model %} selected {% endif %}>{{ model }}</option>
+                        {% endfor %}
+                    </select>
+                    <button id="saveBtn1">Prompt</button>
+                    <textarea id="systemPrompt1" rows="3" placeholder="System prompt for Model 1..."></textarea>
+                </div>
+                
+                <div class="model-group">
+                    <label for="modelSelect2" id="labelModel2">Model 2:</label>
+                    <select id="modelSelect2" onchange="setModel(this.value, 'model_2')">
+                        {% for model in session.available_models %}
+                            <option value="{{ model }}" {% if session.model_2 == model %} selected {% endif %}>{{ model }}</option>
+                        {% endfor %}
+                    </select>
+                    <button id="saveBtn2">Prompt</button>
+                    <textarea id="systemPrompt2" rows="3" placeholder="System prompt for Model 2..."></textarea>            
+                </div>
+            </div>
+
+            <div class="chat-box" id="chatBox"></div>
+            <form id="chatForm">
+                <input type="text" id="userInput" placeholder="Enter your message..." value="Hello! Tell me about yourself.">
+                <input type="submit" value="Send" id="submitBtn">
+            </form>
+
+            <div id="loopControls" style="margin-top: 15px;">
+                <label for="turnLimitInput">Loop Length (turns):</label>
+                <input type="number" id="turnLimitInput" value="3" min="1" style="width: 60px; padding: 10px;">
+                <button id="startLoopBtn">Start Dialog</button>
+                <button id="stopLoopBtn" disabled>Stop</button>
+            </div>
+        </div>
+
+        <!-- Right Column (Logs Window) -->
+        <div class="sidebar-logs">
+            <div id="jsLogArea"></div>
+        </div>
+
+    </div> <!-- End main-container -->
+    
+    <p>Connected to: <strong>{{ session.ollama_host }}</strong> | <a href="/reset_host">Change Address</a></p>
+    
+    <div id="statusArea">Status: Loading application...</div>
+
+    <script>
+        window.appConfig = {
+            isHostSet: true,
+        };
+    </script>
+    <script src="{{ url_for('static', filename='js/marked.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    {% endif %}
+
+</body>
+</html>
