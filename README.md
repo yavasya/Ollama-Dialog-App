@@ -57,3 +57,9 @@ Before running this application, you must have:
 │ ├── chat.js # Frontend JavaScript logic (chat, loops, status)
 │ └── marked.min.js # Library for rendering Markdown
 └── ...
+
+
+## Acknowledgements
+
+Special thanks to Google AI Assistant for help with the English translation and GitHub deployment process.
+
